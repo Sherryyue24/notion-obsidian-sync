@@ -1,94 +1,154 @@
-# Obsidian Sample Plugin
+# Notion-Obsidian Sync Plugin
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+A powerful Obsidian plugin that synchronizes Notion databases to Obsidian folders with comprehensive field mapping and one-click sync capabilities.
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+**[中文文档](README-zh.md)** | **English Documentation**
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open Sample Modal" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+---
 
-## First time developing plugins?
+## 🌟 Features
 
-Quick starting guide for new plugin devs:
+- **🔄 One-Click Sync**: Sync all enabled configurations with a single button
+- **📊 Complete Field Mapping**: Support for all Notion property types including relations
+- **🎯 Multiple Configurations**: Configure multiple database-folder sync pairs
+- **⚡ Smart Property Conversion**: Automatic and custom field mapping options
+- **🔗 Relation Field Support**: Fetch actual page titles from related databases
+- **📝 Visual Configuration**: User-friendly setup with database and folder selection
+- **🛡️ Error Handling**: Comprehensive error handling with detailed feedback
+- **🌐 Network Optimization**: Uses Obsidian's native networking for better compatibility
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+## 🚀 Current Status
 
-## Releasing new releases
+**✅ Fully Implemented: Notion → Obsidian Sync**
+- Complete synchronization from Notion databases to Obsidian folders
+- All Notion property types supported
+- Field mapping configuration
+- Multiple sync configurations
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+**🚧 Coming Soon:**
+- Obsidian → Notion sync
+- Bidirectional sync (Notion ↔ Obsidian)
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
 
-## Adding your plugin to the community plugin list
+## 🛠️ Installation
 
-- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+### Manual Installation
 
-## How to use
+1. Download the latest release from GitHub
+2. Extract files to `.obsidian/plugins/notion-obsidian-sync/` in your vault
+3. Reload Obsidian
+4. Enable the plugin in Settings → Community Plugins
 
-- Clone this repo.
-- Make sure your NodeJS is at least v16 (`node --version`).
-- `npm i` or `yarn` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
+### From Source
 
-## Manually installing the plugin
+```bash
+# Clone the repository
+git clone https://github.com/Sherryyue24/notion-obsidian-sync.git
+cd notion-obsidian-sync
 
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
+# Install dependencies
+npm install
 
-## Improve code quality with eslint (optional)
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
-- To use eslint with this project, make sure to install eslint from terminal:
-  - `npm install -g eslint`
-- To use eslint to analyze this project use this command:
-  - `eslint main.ts`
-  - eslint will then create a report with suggestions for code improvement by file and line number.
-- If your source code is in a folder, such as `src`, you can use eslint with this command to analyze all files in that folder:
-  - `eslint .\src\`
-
-## Funding URL
-
-You can include funding URLs where people who use your plugin can financially support it.
-
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
-
-```json
-{
-    "fundingUrl": "https://buymeacoffee.com"
-}
+# Build the plugin
+npm run build
 ```
 
-If you have multiple URLs, you can also do:
+## ⚙️ Setup Guide
 
-```json
-{
-    "fundingUrl": {
-        "Buy Me a Coffee": "https://buymeacoffee.com",
-        "GitHub Sponsor": "https://github.com/sponsors",
-        "Patreon": "https://www.patreon.com/"
-    }
-}
-```
+### 1. Get Notion API Token
 
-## API Documentation
+1. Visit [Notion Developers](https://developers.notion.com/)
+2. Create a new integration
+3. Copy the "Internal Integration Token"
+4. Share your databases with the integration:
+   - Open your Notion database
+   - Click "..." → "Add connections"
+   - Select your integration
 
-See https://github.com/obsidianmd/obsidian-api
+### 2. Configure the Plugin
+
+1. Open Obsidian Settings → Community Plugins → Notion Sync
+2. Enter your Notion API token
+3. Click "Verify Token" to test the connection
+
+### 3. Create Sync Configurations
+
+**Quick Setup:**
+1. Enter a configuration name
+2. Select a Notion database from the dropdown
+3. Choose an Obsidian folder
+4. Click "Create Quick Sync"
+
+**Advanced Setup:**
+1. Click "Advanced Setup" for more options
+2. Configure field mappings
+3. Set sync preferences
+4. Save configuration
+
+## 🎮 Usage
+
+### One-Click Sync All
+- Click the "🔄 Sync All" button in settings
+- All enabled configurations will sync automatically
+- Real-time progress notifications
+
+### Individual Sync
+- Each configuration has its own "🔄 Sync" button
+- Sync specific database-folder pairs
+- View last sync time for each configuration
+
+### Field Mapping Configuration
+1. Select a database in configuration
+2. Click "Configure Field Mappings"
+3. Choose which Notion properties to sync
+4. Map to corresponding Obsidian properties
+5. Select appropriate data types
+
+## 🔧 Advanced Features
+
+### Smart Field Mapping
+- Automatic property name suggestions
+- Chinese to English name conversion
+- Type-appropriate mapping recommendations
+
+### Relation Field Support
+- Fetches actual page titles instead of IDs
+- Handles cross-database relations
+- Requires proper integration permissions
+
+### Error Handling
+- Detailed error messages
+- Network connectivity checks
+- Permission issue guidance
+
+## 📊 Sync Process
+
+1. **Database Scan**: Retrieves all pages from Notion database
+2. **Property Conversion**: Converts Notion properties to Obsidian frontmatter
+3. **File Management**: Creates or updates Markdown files in target folder
+4. **Timestamp Tracking**: Records sync times and modification dates
+5. **Progress Feedback**: Shows real-time sync status
+
+## 🚨 Troubleshooting
+
+### Common Issues
+
+**"Failed to fetch" Error:**
+- Check internet connection
+- Verify Notion API token
+- Ensure database permissions
+
+**Relation Fields Not Showing:**
+- Grant integration access to related databases
+- Check connection permissions in Notion
+
+**Sync Failures:**
+- Review error messages in notifications
+- Check console logs for detailed information
+- Verify folder permissions in Obsidian
+
+
+## 📄 License
+
+MIT License - see [LICENSE](LICENSE) file for details.
+
